@@ -30,7 +30,7 @@ export const NoFollowData = ({
         <Message
           icon="user outline"
           info
-          content={`${profileName.split(" ")[0]} does not have followers`}
+          content={`${profileName.split(" ")[0]} has no followers`}
         />
       )}
       {followingComponent && (

@@ -11,6 +11,7 @@ import ProfileHeader from "./components/profile/ProfileHeader";
 import { NoProfilePosts } from "./components/layout/NoData";
 import { PlaceHolderPosts } from "./components/layout/PlaceHolderGroup";
 import Followers from "./components/profile/Followers";
+import Following from "./components/profile/Following";
 
 const ProfilePage = ({
   errorLoading,

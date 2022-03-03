@@ -7,50 +7,50 @@ import axios from "axios";
 import { baseURL } from "../../util/baseURL";
 import Cookies from "js-cookie";
 
-const Followers = ({
+const Following = ({
   user,
   loggedUserFollowStats,
   setLoggedUserFollowStats,
   profileUserId,
 }) => {
-  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
   const [loading, setLoading] = useState(false);
   const [followLoading, setFollowLoading] = useState(false);
 
   useEffect(() => {
-    const getFollowers = async () => {
+    const getFollowing = async () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `${baseURL}/api/v1/profile/followers/${profileUserId}`,
+          `${baseURL}/api/v1/profile/following/${profileUserId}`,
           {
             headers: { Authorization: `Bearer ${Cookies.get("token")}` },
           }
         );
-        setFollowers(res.data);
+        setFollowing(res.data);
       } catch (error) {
         console.log(error);
       }
       setLoading(false);
     };
-    getFollowers();
+    getFollowing();
   }, []);
 
   return (
     <>
       {loading ? (
         <Spinner />
-      ) : followers.length > 0 ? (
-        followers.map((follower) => {
+      ) : following.length > 0 ? (
+        following.map((follow) => {
           const isFollowing = loggedUserFollowStats.following.some(
-            (each) => each.user === follower.user._id
+            (each) => each.user === follow.user._id
           );
 
           return (
-            <List key={follower.user._id} divided verticalAlign="middle">
+            <List key={follow.user._id} divided verticalAlign="middle">
               <List.Item>
                 <List.Content floated="right">
-                  {follower.user._id !== user._id && (
+                  {follow.user._id !== user._id && (
                     <Button
                       color={isFollowing ? "instagram" : "twitter"}
                       icon={isFollowing ? "check" : "add user"}
@@ -60,11 +60,11 @@ const Followers = ({
                         setFollowLoading(true);
                         isFollowing
                           ? await unfollowUser(
-                              follower.user._id,
+                              follow.user._id,
                               setLoggedUserFollowStats
                             )
                           : await followUser(
-                              follower.user._id,
+                              follow.user._id,
                               setLoggedUserFollowStats
                             );
                         setFollowLoading(false);
@@ -72,19 +72,19 @@ const Followers = ({
                     />
                   )}
                 </List.Content>
-                <Image avatar src={follower.user.profilePicURL}/>
-                <List.Content as="a" href={`/${follower.user.username}`} >
-                  {follower.user.name}
+                <Image avatar src={follow.user.profilePicURL} />
+                <List.Content as="a" href={`/${follow.user.username}`}>
+                  {follow.user.name}
                 </List.Content>
               </List.Item>
             </List>
           );
         })
       ) : (
-        <NoFollowData followersComponent={true} profileName={user.name} />
+        <NoFollowData followingComponent={true} profileName={user.name} />
       )}
     </>
   );
 };
 
-export default Followers;
+export default Following;
