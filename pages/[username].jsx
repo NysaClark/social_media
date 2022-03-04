@@ -12,6 +12,8 @@ import { NoProfilePosts } from "./components/layout/NoData";
 import { PlaceHolderPosts } from "./components/layout/PlaceHolderGroup";
 import Followers from "./components/profile/Followers";
 import Following from "./components/profile/Following";
+import UpdateProfile from "./components/profile/UpdateProfile";
+import UpdateSettings from "./components/profile/UpdateSettings";
 
 const ProfilePage = ({
   errorLoading,
@@ -114,6 +116,9 @@ const ProfilePage = ({
             )}
             {activeItem === "updateProfile" && (
               <UpdateProfile profile={profile} />
+            )}
+            {activeItem === "updateSettings" && (
+              <UpdateSettings />
             )}
           </Grid.Column>
         </Grid.Row>

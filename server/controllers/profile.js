@@ -58,11 +58,11 @@ const getUserPosts = async (req, res) => {
 const getFollowers = async (req, res) => {
   try {
     const { userId } = req.params;
-    console.log(userId);
+    // console.log(userId);
     const user = await FollowerModel.findOne({ user: userId }).populate(
       "followers.user"
     );
-    console.log(user);
+    // console.log(user);
     res.status(200).json(user.followers);
   } catch (error) {
     console.log(error);
