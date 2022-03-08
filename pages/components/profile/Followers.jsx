@@ -40,7 +40,7 @@ const Followers = ({
     <>
       {loading ? (
         <Spinner />
-      ) : followers.length > 0 ? (
+      ) : followers.length? (
         followers.map((follower) => {
           const isFollowing = loggedUserFollowStats.following.some(
             (each) => each.user === follower.user._id
@@ -72,8 +72,8 @@ const Followers = ({
                     />
                   )}
                 </List.Content>
-                <Image avatar src={follower.user.profilePicURL}/>
-                <List.Content as="a" href={`/${follower.user.username}`} >
+                <Image avatar src={follower.user.profilePicURL} />
+                <List.Content as="a" href={`/${follower.user.username}`}>
                   {follower.user.name}
                 </List.Content>
               </List.Item>

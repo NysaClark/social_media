@@ -85,7 +85,7 @@ const createUser = async (req, res) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: "2d" },
+      { expiresIn: "5d" },
       (err, token) => {
         if (err) throw err;
         res.status(200).json(token);
@@ -118,7 +118,7 @@ const postUserLogin = async (req, res) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: "2d" },
+      { expiresIn: "5d" },
       (err, token) => {
         if (err) throw err;
         res.status(200).json(token);
