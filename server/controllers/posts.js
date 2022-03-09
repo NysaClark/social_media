@@ -117,7 +117,7 @@ const deletePost = async (req, res) => {
     return res.status(200).send("Post removed");
   } catch (error) {
     console.log(error);
-    return res.status(500).send("server Error @ deletePost");
+    return res.status(500).send("server Error on deletePost");
   }
 };
 
@@ -146,7 +146,7 @@ const likePost = async (req, res) => {
     return res.status(200).send("Post liked");
   } catch (error) {
     console.log(error);
-    return res.status(500).send("Server Error @ likePost");
+    return res.status(500).send("Server Error on likePost");
   }
 };
 
@@ -176,7 +176,7 @@ const unlikePost = async (req, res) => {
     return res.status(200).send("Post Unliked");
   } catch (error) {
     console.log(error);
-    return res.status(500).send("Server Error @ unlikePost");
+    return res.status(500).send("Server Error on unlikePost");
   }
 };
 
@@ -196,7 +196,7 @@ const getLikes = async (req, res) => {
     return res.status(200).json(post.likes);
   } catch (error) {
     console.log(error);
-    return res.status(500).send("Server Error @ getLikes");
+    return res.status(500).send("Server Error on getLikes");
   }
 };
 
@@ -230,7 +230,7 @@ const createComment = async (req, res) => {
     return res.status(200).json(newComment._id);
   } catch (error) {
     console.log(error);
-    return res.status(500).send("Server Error @ createComment");
+    return res.status(500).send("Server Error on createComment");
   }
 };
 
@@ -275,7 +275,7 @@ const deleteComment = async (req, res) => {
     await deleteComment();
   } catch (error) {
     console.log(error);
-    return res.status(500).send("Server Error @ deleteComment");
+    return res.status(500).send("Server Error on deleteComment");
   }
 };
 

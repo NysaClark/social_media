@@ -45,6 +45,7 @@ const CardPost = ({ post, user, setPosts, setShowToastr }) => {
           closeIcon
           closeOnDimmerClick
           onClose={() => setShowModal(false)}
+          style={{ marginTop: "2.2rem" }}
         >
           <Modal.Content>
             {post.picUrl ? (

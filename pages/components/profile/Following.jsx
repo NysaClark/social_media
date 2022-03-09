@@ -40,7 +40,7 @@ const Following = ({
     <>
       {loading ? (
         <Spinner />
-      ) : following.length > 0 ? (
+      ) : following.length ? (
         following.map((follow) => {
           const isFollowing = loggedUserFollowStats.following.some(
             (each) => each.user === follow.user._id

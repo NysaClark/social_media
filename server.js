@@ -37,6 +37,7 @@ const uploadRoutes = require("./server/routes/uploadPicRoutes");
 const searchRoutes = require("./server/routes/searchRoutes");
 const postRoutes = require("./server/routes/postsRoutes");
 const profileRoutes = require("./server/routes/profile");
+const messagesRoutes = require("./server/routes/messagesRoutes");
 
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/auth", authRoutes);
@@ -44,6 +45,7 @@ app.use("/api/v1/uploads", uploadRoutes);
 app.use("/api/v1/search", searchRoutes);
 app.use("/api/v1/posts", auth, postRoutes);
 app.use("/api/v1/profile", auth, profileRoutes);
+app.use("/api/v1/messages", auth, messagesRoutes)
 // app.use('/api/v1/search', require('./server/routes/searchRoutes'))
 
 //* APP STARTUP

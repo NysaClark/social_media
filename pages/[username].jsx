@@ -82,7 +82,7 @@ const ProfilePage = ({
                 />
                 {loading ? (
                   <PlaceHolderPosts />
-                ) : posts ? (
+                ) : posts.length ? (
                   posts.map((post) => {
                     return (
                       <CardPost
