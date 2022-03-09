@@ -7,13 +7,16 @@ import Cookies from "js-cookie";
 import { Segment, Header, Divider, Comment, Grid } from "semantic-ui-react";
 import { useRouter } from "next/router";
 import Banner from "./components/messages/Banner";
+import ChatListSearch from "./components/messages/ChatListSearch";
+import Chat from "./components/messages/Chat";
+import MessagesInputField from "./components/messages/MessagesInputField";
 
 const scrollDivToBottom = (divRef) =>
   divRef.current !== null &&
   divRef.current.scrollIntoView({ behavior: "smooth" });
 
 const messages = ({ chatsData, user }) => {
-  const [chats, setChats] = useState([]);
+  const [chats, setChats] = useState(chatsData);
   const [connectedUsers, setConnectedUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [bannerData, setBannerData] = useState({ name: "", profilePicURL: "" });
@@ -49,15 +52,15 @@ const messages = ({ chatsData, user }) => {
       />
       <Divider hidden />
       <div style={{ marginBottom: "1rem" }}>
-        <p>Chat List Search Component</p>
+        <ChatListSearch chats={chats} setChats={setChats} />
       </div>
       {chats.length > 0 ? (
         <Grid stackable>
-          <Grid.Column width={4}>
+          <Grid.Column width={8}>
             <Comment.Group size="big">
               <Segment raised style={{ overflow: "auto", maxHeight: "32rem" }}>
                 {chats.map((chat, i) => (
-                  <p>Chat Component</p>
+                  <Chat key={i} chat={chat} connectedUsers={connectedUsers} deleteChat={deleteChat} />
                 ))}
               </Segment>
             </Comment.Group>
@@ -81,7 +84,7 @@ const messages = ({ chatsData, user }) => {
                   {messages.length > 0 &&
                     messages.map((message, i) => <p>Message Component</p>)}
                 </div>
-                <p>Message Input Field Component</p>
+                <MessagesInputField sendMsg={null}/>
               </>
             )}
           </Grid.Column>

@@ -1,6 +1,7 @@
 const UserModel = require("../models/UserModel");
 const FollowerModel = require("../models/FollowerModel");
 const ProfileModel = require("../models/ProfileModel");
+const ChatModel = require("../models/ChatModel");
 const defaultProfilePic = require("../util/defaultPic");
 
 const jwt = require("jsonwebtoken");
@@ -113,6 +114,9 @@ const postUserLogin = async (req, res) => {
 
     const isPassword = await bcrypt.compare(password, user.password);
     if (!isPassword) return res.status(401).send("Invalid Credentials");
+
+    const chatModel = await ChatModel.findOne({ user: user._id });
+    if(!chatModel) await new ChatModel({user: user._id}).save();
 
     const payload = { userId: user._id };
     jwt.sign(
