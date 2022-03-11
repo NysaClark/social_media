@@ -12,6 +12,7 @@ const Message = ({ message, user, deleteMsg, bannerProfilePic, divRef }) => {
         onClick={() => ifSender && setShowDeleteIcon(!showDeleteIcon)}
       >
         <img
+          style={{objectFit: "contain", height: "30px", width: "30px"}}
           className="inlineIcon"
           src={ifSender ? user.profilePicURL : bannerProfilePic}
         />
@@ -26,7 +27,7 @@ const Message = ({ message, user, deleteMsg, bannerProfilePic, divRef }) => {
                 name="trash"
                 color="red"
                 style={{ cursor: "pointer" }}
-                // onClick={() => deleteMsg(message._id)}
+                onClick={() => deleteMsg(message._id)}
               />
             }
             content="This will only delete the message from your inbox, not theirs"

@@ -26,6 +26,7 @@ const ProfilePage = ({
   const router = useRouter();
   const { username } = router.query;
   const ownAccount = profile.user._id === user._id;
+  // console.log(profile);
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -54,6 +55,8 @@ const ProfilePage = ({
     };
     getPosts();
   }, [router.query.username]);
+
+  if(!profile) return null;
 
   return (
     <>
